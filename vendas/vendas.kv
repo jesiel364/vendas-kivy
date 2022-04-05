@@ -7,13 +7,14 @@
 
 
 <VendasWindow>:
+
+#Navbar
 	orientation: 'vertical'
 	BoxLayout:
-
 		size_hint_y: .1
 		canvas.before:
 			Color:
-				rgba: hex('#3E0092')
+				rgba: hex('#00EBBF')
 			Rectangle:
 				size: self.size
 				pos: self.pos
@@ -25,27 +26,27 @@
 			id: lbl_bemvindo
 			size_hint_x: .3
 			text: 'Seja Bem Vindo: '
-			color: hex('#ffffff')
+			color: hex('#1F1F1F')
 
 		GridLayout:
-			size_hint_x: .25
+			size_hint_x: .2
 			rows: 2
 			cols: 2
 			Label:
 				text: 'Data: '
-				color: hex('#ffffff')
+				color: hex('#1F1F1F')
 			
 			Label:
 				id: data
-				color: hex('#ffffff')
+				color: hex('#1F1F1F')
 
 			Label:
 				text: 'Hora: '
-				color: hex('#ffffff')
+				color: hex('#1F1F1F')
 
 			Label:
 				id: hora
-				color: hex('#ffd700')
+				color: hex('#1F1F1F')
 
 		Label:
 			size_hint_x: .2
@@ -64,7 +65,7 @@
 			text: 'Sair'
 			on_release: root.sair()
 
-
+			# Main
 	BoxLayout:
 		canvas.before:
 			Color:
@@ -72,16 +73,35 @@
 			Rectangle:
 				size: self.size
 				pos: self.pos
-		
+		size_hint_y: .85
 
+		BoxLayout:
+			size_hint_x: .7
+
+
+		# Sidebar
+		BoxLayout:
+			size_hint_x: .3
+			canvas.before:
+				Color:
+					rgba: hex('#00EBBF')
+				Rectangle:
+					size: self.size
+					pos: self.pos
+
+	
+		
+					# Footer
 	BoxLayout:
-		# size_hint_y: .1
+		size_hint_y: .03
 		canvas.before:
 			Color:
 				rgba: hex('#3E0092')
 			Rectangle:
 				size: self.size
 				pos: self.pos
+
+
 		
 
 				
