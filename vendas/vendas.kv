@@ -2,9 +2,30 @@
 
 <Btn@Button>:
 	background_normal:''
-	background_color: hex('#BA004F')
+	background_color: hex('#363636')
 	color: hex('#ffffff')
 
+<Btn_verde@Button>:
+	background_normal:''
+	background_color: hex('#008007')
+	color: hex('#ffffff')
+
+<Btn_vermelho@Button>:
+	background_normal:''
+	background_color: hex('#D70404')
+	color: hex('#ffffff')
+
+<Label_1@Label>:
+	canvas.before:
+		Color:
+			rgba: hex('005CC0')
+		Rectangle:
+			size: self.size
+			pos: self.pos
+	color: hex('#ffffff')
+
+<Text_light@Label>:
+	color: hex('#E9E9E9')
 
 <VendasWindow>:
 
@@ -14,7 +35,7 @@
 		size_hint_y: .1
 		canvas.before:
 			Color:
-				rgba: hex('#00EBBF')
+				rgba: hex('#0037A6')
 			Rectangle:
 				size: self.size
 				pos: self.pos
@@ -22,31 +43,31 @@
 		spacing: .5
 
 
-		Label:
+		Text_light:
 			id: lbl_bemvindo
 			size_hint_x: .3
 			text: 'Seja Bem Vindo: '
-			color: hex('#1F1F1F')
+		
 
 		GridLayout:
 			size_hint_x: .2
 			rows: 2
 			cols: 2
-			Label:
+			Text_light:
 				text: 'Data: '
-				color: hex('#1F1F1F')
+				
 			
-			Label:
+			Text_light:
 				id: data
-				color: hex('#1F1F1F')
+				
 
-			Label:
+			Text_light:
 				text: 'Hora: '
-				color: hex('#1F1F1F')
+				
 
-			Label:
+			Text_light:
 				id: hora
-				color: hex('#1F1F1F')
+				
 
 		Label:
 			size_hint_x: .2
@@ -59,35 +80,168 @@
 			on_release: root.admin()
 			
 		
-		Btn:
+		Btn_vermelho:
 			id: sair
 			size_hint_x: .15
 			text: 'Sair'
 			on_release: root.sair()
+		
 
 			# Main
 	BoxLayout:
 		canvas.before:
 			Color:
-				rgba: hex('#6400EB')
+				rgba: hex('#F0F483')
 			Rectangle:
 				size: self.size
 				pos: self.pos
 		size_hint_y: .85
 
-		BoxLayout:
-			size_hint_x: .7
+		spacing: .5
 
+		
+
+
+		BoxLayout:
+			# canvas.before:
+			# 	Color:
+			# 		rgba: hex('#C600FF')
+			# 	Rectangle:
+			# 		size: self.size
+			# 		pos: self.pos
+
+			orientation: 'vertical'
+			size_hint_x: .7
+			# size_hint_y: .2
+
+			GridLayout:
+				size_hint_y: .1
+				spacing: .5
+				rows: 2
+				colls: 2
+
+				Label_1:
+					text: 'Pesquisar Por Código'
+
+				Label_1:
+					text: 'Pesquisar Por Nome'
+
+				TextInput:
+					id: pesquisar_codigo
+					multiline: False
+					on_text_validate: root.add_produto_codigo(self.text)
+
+				TextInput:
+					id: pesquisar_nome
+					multiline: False
+					on_text_validate: root.add_produto_nome(self.text)
+
+			BoxLayout:
+				size_hint_y: .8
+				orientation: 'vertical'
+
+				BoxLayout:
+					size_hint_y: .05
+					spacing: .5
+					
+					Label_1:
+						text: 'Cod'
+						size_hint_x: .1
+
+					Label_1:
+						text: 'Prod'
+						size_hint_x: .5
+					Label_1:
+						text: 'Qtde'
+						size_hint_x: .1
+					Label_1:
+						text: 'Preço'
+						size_hint_x: .15
+					Label_1:
+						text: 'Valor'
+						size_hint_x: .15
+				BoxLayout:
+
+			BoxLayout:
+				# size_hint_x: .99
+				size_hint_y: .1
+				spacing: .5
+				
+				Btn_vermelho:
+					on_release: root.deletar()
+					text: 'Deletar'
+
+				Btn_verde:
+					on_release: root.atualizar()
+					text: 'Atualizar Quantidade' 
+	
 
 		# Sidebar
 		BoxLayout:
+			orientation: 'vertical'
 			size_hint_x: .3
 			canvas.before:
 				Color:
-					rgba: hex('#00EBBF')
+					rgba: hex('#AFAFAF')
 				Rectangle:
 					size: self.size
 					pos: self.pos
+
+			GridLayout:
+				canvas.before:
+					Color:
+						rgba: hex('282828')
+					Rectangle:
+						size: self.size
+						pos: self.pos
+
+				size_hint_y: .4
+				rows: 2
+				cols: 2
+
+				Label_1:
+					text: 'Sub-Total'
+
+				Label_1:
+					id: sub-total
+					text: '0.00'
+
+				Label_1:
+					text: 'Total'
+
+				Label_1:
+					id: total
+					text: '0.00'
+
+			BoxLayout:
+				orientation: 'vertical'
+				spacing: .5
+				size_hint_y: .6
+
+				Label_1:
+					id: notificacao_falha
+
+				Label_1:
+					id: notificacao_sucesso
+
+				Btn_verde:
+					size_hint_y: .25
+					id: pagar
+					text: 'Pagar'
+					on_release: root.pagar()
+
+				Btn_verde:
+					size_hint_y: .25
+					id: nova_compra
+					text: 'Fazer Nova Compra'
+					on_release: root.nova_compra()
+
+
+
+
+
+
+
 
 	
 		
